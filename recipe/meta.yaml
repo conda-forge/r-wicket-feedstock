@@ -33,7 +33,7 @@ requirements:
   host:
     - r-base
     - r-bh
-    - r-bh 1.72  # [r_base == "4.0"]
+    - r-bh 1.72  # [(r_base == "4.0") or win]
     - r-rcpp
   run:
     - r-base
