@@ -1,6 +1,5 @@
 {% set version = '0.4.0' %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-wicket
@@ -13,8 +12,7 @@ source:
   sha256: ce76a4c8f79e7dfb9d8aadfa59b7f5cdb0de3dd9623b1426fd5caf6464fd3fd2
 
 build:
-  merge_build_host: True  # [win]
-  number: 3
+  number: 4
   rpaths:
     - lib/R/lib/
     - lib/
@@ -23,6 +21,7 @@ requirements:
   build:
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ posix }}filesystem        # [win]
@@ -33,11 +32,9 @@ requirements:
   host:
     - r-base
     - r-bh
-    - r-bh 1.72  # [(r_base == "4.0") or win]
     - r-rcpp
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-rcpp
 
 test:
